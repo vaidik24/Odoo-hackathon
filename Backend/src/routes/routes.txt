@@ -1,0 +1,2 @@
+@route    POST api/auth/signup
+@route    POST api/auth/login
