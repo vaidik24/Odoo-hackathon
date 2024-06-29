@@ -15,6 +15,8 @@ const Login = () => {
     try {
       const res = await axios.post("http://localhost:8000/api/auth/login", formData);
       console.log(res.data); // Handle successful login
+      // store the res.data in localstorage
+      localStorage.setItem("token", res.data.token);
       navigate("/"); // Redirect to Home page
     } catch (err) {
       console.error(err.response.data); // Handle errors
