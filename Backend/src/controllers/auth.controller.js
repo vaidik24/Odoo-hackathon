@@ -1,7 +1,7 @@
 // src/controllers/auth.controller.js
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { User } from "../models/User.model.js";
+import { User } from "../models/user.model.js";
 import { validationResult } from "express-validator";
 
 // User signup
@@ -60,10 +60,7 @@ export const login = async (req, res) => {
 
   try {
     let user = await User.findOne({
-      $or: [
-        { username: username },
-        { email: username }
-      ]
+      $or: [{ username: username }, { email: username }],
     });
 
     if (!user) {
