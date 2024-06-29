@@ -1,1 +1,1 @@
-export const DB_NAME = "backend-name";
+export const DB_NAME = "VibeLive";
