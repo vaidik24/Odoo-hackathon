@@ -6,6 +6,7 @@ import Events from './components/Events';
 import Dashboard from './pages/Dashboard';
 import About from './components/About';
 import FanDashboard from './pages/FanDashboard'
+import Contact from './components/Contact';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/events" element={<Events />}></Route>
         <Route path="/musician/dashboard" element={<Dashboard/>}></Route>
         <Route path="/fan/dashboard" element={<FanDashboard/>}></Route>
+        <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
     </BrowserRouter>
     </>
@@ -28,3 +30,5 @@ function App() {
 }
 
 export default App
+
+

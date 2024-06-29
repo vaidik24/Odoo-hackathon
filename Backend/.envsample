@@ -1,4 +1,6 @@
 PORT=8000
 CORS_ORIGIN=*
-MONGODB_URL="mongodb+srv://vaidik24:<password>@cluster0.rd6wiou.mongodb.net"
-JWT_SECRET=""
+MONGODB_URL=mongodb+srv://<>:<>@cluster0.rd6wiou.mongodb.net
+JWT_SECRET=<>
+EMAIL_USER=<>
+EMAIL_PASS=<>

@@ -8,6 +8,7 @@ import fanProfileRoutes from "./routes/fanProfile.routes.js";
 import eventRoutes from "./routes/event.routes.js";
 import ticketRoutes from "./routes/ticket.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import nodemailer from "nodemailer";
 
 const app = express();
 
@@ -37,5 +38,37 @@ app.use("/api/fanProfiles", fanProfileRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/tickets", ticketRoutes);
 app.use("/api/payments", paymentRoutes);
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+app.post("/api/contact", async (req, res) => {
+  // console.log(req.body.name);
+  const { name, email, message } = req.body;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: "vibe46352@gmail.com",
+    subject: "New Contact Form Submission",
+    text: `
+      Name: ${name}
+      Email: ${email}
+      Message: ${message}
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Email sent successfully" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ message: "Error sending email" });
+  }
+});
 
 export { app };
