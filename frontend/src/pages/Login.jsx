@@ -17,9 +17,11 @@ const Login = () => {
       console.log(res.data); // Handle successful login
       // store the res.data in localstorage
       localStorage.setItem("token", res.data.token);
+      // store the username
+      localStorage.setItem("username", res.data.username);
       navigate("/"); // Redirect to Home page
     } catch (err) {
-      console.error(err.response.data); // Handle errors
+      console.error(err.response?.data); // Handle errors
       // Optionally show error message to user
     }
   };

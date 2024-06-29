@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css'
+import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => (
   <div className="event-card">
@@ -8,9 +9,9 @@ const EventCard = ({ event }) => (
       <div className="event-title">{event.title}</div>
       <div className="event-genre">{event.genre}</div>
       <div className="event-description">{event.description}</div>
-      <a href={event.streamUrl} className="watch-button" target="_blank" rel="noopener noreferrer">
+      <Link href={event.streamUrl} className="watch-button" target="_blank" rel="noopener noreferrer">
         Watch Now
-      </a>
+      </Link>
     </div>
   </div>
 );

@@ -6,6 +6,7 @@ import '../css/style.css'
 
 const About = () => {
   return (
+    
     <div className="min-h-screen " id='about'>
       
       {/* About Us Section */}

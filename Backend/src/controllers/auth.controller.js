@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
       return res.status(400).json({ msg: "User already exists" });
     }
 
-    user = new User({
+    user = new User({ 
       fullName,
       username,
       email,
@@ -45,7 +45,7 @@ export const signup = async (req, res) => {
       { expiresIn: "5h" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token, username });
       }
     );
   } catch (err) {
@@ -85,7 +85,7 @@ export const login = async (req, res) => {
       { expiresIn: "5h" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token, username});
       }
     );
   } catch (err) {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/images/register.png";
 
 const Register = () => {
@@ -13,25 +13,41 @@ const Register = () => {
   });
 
   const { fullName, email, username, password, role } = formData;
-
+  const navigate = useNavigate()
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const res = await axios.post(
         "http://localhost:8000/api/auth/signup",
         formData
       );
       console.log(res.data); // Handle successful registration
-      // Optionally redirect or show success message
+  
+      // Check if the response contains user data with an ID
+      if (res.data && res.data.user && res.data.user.username) {
+        console.log("User Name:", res.data.user.username);
+        // Optionally store the user ID in localStorage
+        localStorage.setItem("username", res.data.user.username);
+      }
+  
+      // Optionally redirect to login page
+      // Redirect logic can be implemented based on your routing setup
+      // For example, using useHistory hook or <Link> component from react-router-dom
+  
+      // Redirect to login page after successful registration
+      // Replace '/login' with your actual login route
+      navigate("/login");
+  
     } catch (err) {
       console.error(err.response.data); // Handle errors
     }
   };
+  
 
   return (
     <>
