@@ -56,10 +56,16 @@ export const signup = async (req, res) => {
 
 // User login
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    let user = await User.findOne({ email });
+    let user = await User.findOne({
+      $or: [
+        { username: username },
+        { email: username }
+      ]
+    });
+
     if (!user) {
       return res.status(400).json({ msg: "Invalid Credentials" });
     }
