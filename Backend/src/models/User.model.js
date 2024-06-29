@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import { FanProfile } from './FanProfile.model.js';
+import { MusicianProfile } from './MusicianProfile.model.js';
 
 const userSchema = new mongoose.Schema(
   {
@@ -38,17 +40,16 @@ const userSchema = new mongoose.Schema(
 userSchema.pre("save", async function (next) {
   try {
     if (this.role === "fan") {
-      const FanProfile = mongoose.model("FanProfile");
       const fanProfile = new FanProfile({ userId: this._id });
       await fanProfile.save();
     } else if (this.role === "musician") {
-      const MusicianProfile = mongoose.model("MusicianProfile");
       const musicianProfile = new MusicianProfile({ userId: this._id });
       await musicianProfile.save();
     }
     next();
   } catch (err) {
     console.log("Error in UserModel :", err);
+    next(err);
   }
 });
 

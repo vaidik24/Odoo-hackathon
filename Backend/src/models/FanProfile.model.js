@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const fanProfileSchema = new mongoose.Schema({
   userId: {
